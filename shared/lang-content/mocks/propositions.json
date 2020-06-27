@@ -1,0 +1,72 @@
+[
+  {
+    "reminder": "tu aimes lire ?",
+    "createdAt": "2020-07-01",
+    "text": "你喜欢看书吗"
+  },
+  {
+    "reminder": "il est très riche",
+    "createdAt": "2020-07-02",
+    "text": "他很有钱"
+  },
+  {
+    "reminder": "elle est très heureuse",
+    "createdAt": "2020-07-03",
+    "text": "她很高兴"
+  },
+  {
+    "reminder": "j'ai acheté des fruits",
+    "createdAt": "2020-07-04",
+    "text": "我买了水果"
+  },
+  {
+    "reminder": "Marseille est au sud de le france",
+    "createdAt": "2020-07-05",
+    "text": "马赛在法国的南部"
+  },
+  {
+    "reminder": "Je vais à Paris travailler",
+    "createdAt": "2020-07-06",
+    "text": "我去巴黎工作"
+  },
+  {
+    "text": "我的祖先是德国人",
+    "reminder": "Mes ancêtres sont allemands",
+    "createdAt": "2020-07-08"
+  },
+  {
+    "text": "我有一个重要的会",
+    "reminder": "J'ai une réunion importante",
+    "createdAt": "2020-07-09"
+  },
+  {
+    "text": "我女朋友是台湾人",
+    "reminder": "Ma petite amie est Taïwanaise",
+    "createdAt": "2020-07-10"
+  },
+  {
+    "text": "星期五我们去散步",
+    "reminder": "Vendredi nous irons nous promener.",
+    "createdAt": "2020-07-22"
+  },
+  {
+    "text": "再次难过的夜晚",
+    "reminder": "Triste soirée à nouveau",
+    "createdAt": "2020-07-26"
+  },
+  {
+    "text": "我正在学习写作",
+    "reminder": "J'apprends à écrire.",
+    "createdAt": "2020-07-26"
+  },
+  {
+    "text": "你叫什么名字",
+    "reminder": "tu t'appelle comment ? ",
+    "createdAt": "2020-07-28"
+  },
+  {
+    "text": "我爱玉書",
+    "reminder": "J'aime Anne",
+    "createdAt": "2020-07-30"
+  }
+]

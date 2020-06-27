@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "olang-chinese",
+    "slug": "olang-chinese",
+    "platforms": ["android", "web"],
+    "version": "1.0.3",
+    "orientation": "portrait",
+    "icon": "./assets/icon-192.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "android": {
+      "package": "ezwn.olang.chinese",
+      "versionCode": 3
+    },
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
