@@ -68,5 +68,15 @@
     "text": "我爱玉書",
     "reminder": "J'aime Anne",
     "createdAt": "2020-07-30"
+  },
+  {
+    "text": "今天的气温是四十度",
+    "reminder": "La température d'aujourd'hui est de 40 degrés",
+    "createdAt": "2020-07-31"
+  },
+  {
+    "text": "你来不来",
+    "reminder": "Tu viens ? ",
+    "createdAt": "2020-07-31"
   }
 ]

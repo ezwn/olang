@@ -1,15 +1,18 @@
 import React from "react";
 
-import * as LangContentTreeFeature from "features/lang-content-tree/manifest";
+import * as LangContentTreeFeature from "features/lang-learning/manifest";
 import * as MaintenanceFeature from "features/maintenance/manifest";
 
-import { LangContentProvider } from "shared/lang-content/contexts/LangContent-ctx";
-import { LangUserProvider } from "shared/lang-selection/contexts/LangSelection-ctx";
+import { ChineseProvider } from "shared/chinese/Chinese-ctx";
+import { SelectionProvider } from "shared/selection/Selection-ctx";
+import { ResultsProvider } from "shared/results/Results-ctx";
 
 export const features = [LangContentTreeFeature, MaintenanceFeature];
 
 export const GlobalProvider = ({ children }) => (
-  <LangUserProvider>
-    <LangContentProvider>{children}</LangContentProvider>
-  </LangUserProvider>
+  <ResultsProvider>
+    <SelectionProvider>
+      <ChineseProvider>{children}</ChineseProvider>
+    </SelectionProvider>
+  </ResultsProvider>
 );

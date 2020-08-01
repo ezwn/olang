@@ -5,19 +5,23 @@ import { VerticalBorderLayout } from "ezwn-ux-native/layouts/VerticalBorderLayou
 import { TitleBar } from "ezwn-ux-native/app-components/TitleBar-cmp";
 import { TextInput } from "ezwn-ux-native/forms/TextInput-cmp";
 
-import { useLangContent } from "shared/lang-content/contexts/LangContent-ctx";
+import { useChinese } from "shared/chinese/Chinese-ctx";
+import { useResults } from "shared/results/Results-ctx";
 
 export const MaintenanceRootView = () => {
-  const { propositions, trainingResults, setLangContent } = useLangContent();
+  const { results, setResults } = useResults();
+  const { propositions, setPropositions } = useChinese();
 
   const [text, setText] = useState("");
 
   function exportData() {
-    setText(JSON.stringify({ propositions, trainingResults }, undefined, 2));
+    setText(JSON.stringify({ propositions, results }, undefined, 2));
   }
 
   function importData() {
-    setLangContent(JSON.parse(text));
+    const data = JSON.parse(text);
+    setResults(data.results);
+    setPropositions(data.propositions);
   }
 
   return (

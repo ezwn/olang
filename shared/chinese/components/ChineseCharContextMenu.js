@@ -1,12 +1,12 @@
 import React from "react";
 import { Linking } from "react-native";
 
-import { ContextualMenu } from "ezwn-ux-native/app-components/ContextualMenu-cmp";
-import { useLangSelection } from "shared/lang-selection/contexts/LangSelection-ctx";
+import { useSelection } from "shared/selection/Selection-ctx";
 import { PenFancyTextIcon } from "ezwn-ux-native/text-icons/PenFancyTextIcon-cmp";
 import { SuccessTextIcon } from "ezwn-ux-native/text-icons/SuccessTextIcon-cmp";
 import { FailureTextIcon } from "ezwn-ux-native/text-icons/FailureTextIcon-cmp";
-import { useLangContent } from "../contexts/LangContent-ctx";
+import { ContextualMenu } from "ezwn-ux-native/app-components/ContextualMenu-cmp";
+import { useResults } from "shared/results/Results-ctx";
 
 const openYoutube = (char) => {
   const url = `https://www.youtube.com/results?search_query=write+${encodeURIComponent(
@@ -21,14 +21,14 @@ const openYoutube = (char) => {
 };
 
 export const ChineseCharContextMenu = () => {
-  const { selection } = useLangSelection();
-  const { recordSuccess, recordFailure, findTrainingResult } = useLangContent();
+  const { selection } = useSelection();
+  const { recordSuccess, recordFailure, findResult } = useResults();
 
   const date = new Date().toISOString().substring(0, 10);
-  const trainingResult = findTrainingResult(selection);
+  const trainingResult = findResult(selection);
 
   return (
-    <ContextualMenu>
+    <>
       {selection && (
         <>
           {trainingResult.date !== date && (
@@ -46,6 +46,6 @@ export const ChineseCharContextMenu = () => {
           </ContextualMenu.Choice>
         </>
       )}
-    </ContextualMenu>
+    </>
   );
 };

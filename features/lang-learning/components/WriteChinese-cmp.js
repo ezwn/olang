@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Text, View } from "react-native";
 
-import { useLangContent } from "shared/lang-content/contexts/LangContent-ctx";
+import { useChinese } from "shared/chinese/Chinese-ctx";
 import { TextInput } from "ezwn-ux-native/forms/TextInput-cmp";
 import { Field } from "ezwn-ux-native/forms/Field-cmp";
 import { Button } from "ezwn-ux-native/app-components/Button-cmp";
 
-import { ChineseProp } from "../../../shared/lang-content/components/ChineseProp";
-import { useLangSelection } from "shared/lang-selection/contexts/LangSelection-ctx";
+import { ChineseProp } from "../../../shared/chinese/components/ChineseProp";
+import { useSelection } from "shared/selection/Selection-ctx";
 
 export const WriteChineseComponent = () => {
-  const { studyProp } = useLangContent();
+  const { studyProp } = useChinese();
   const [chinese, setChinese] = useState("");
   const [reminder, setReminder] = useState("");
-  const { setSelection } = useLangSelection();
+  const { setSelection } = useSelection();
 
   useEffect(() => {
     setSelection(null);

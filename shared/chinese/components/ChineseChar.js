@@ -2,34 +2,17 @@ import React from "react";
 
 import { Text, View, TouchableHighlight, Linking } from "react-native";
 import { cedictFind } from "../../../lib/ezwn-cedict/cedict";
-import { useLangSelection } from "shared/lang-selection/contexts/LangSelection-ctx";
-import { useLangContent } from "../contexts/LangContent-ctx";
-import { ClipPath } from "react-native-svg";
+import { useSelection } from "shared/selection/Selection-ctx";
+import { useResultStyle } from "shared/results/result-hooks";
+import { useResults } from "shared/results/Results-ctx";
 
 const smallCardViewStyle = {
   width: 45
 };
 
-const getDynamicTextStyle = (char) => {
-  const { getScoreRank } = useLangContent();
-  let style = {};
-
-  const scoreRank = getScoreRank(char);
-  if (scoreRank > -1) {
-    if (scoreRank <= 5) {
-      style = { ...style, color: "red" };
-    } else if (scoreRank <= 15) {
-      style = { ...style, color: "orange" };
-    } else {
-      style = { ...style, color: "green" };
-    }
-  }
-
-  return style;
-};
-
 export const ChineseCharSmallCard = ({ char, style }) => {
-  const { selection, setSelection } = useLangSelection();
+  const { selection, setSelection } = useSelection();
+  const resultStyle = useResultStyle(char);
   const pinyin = cedictFind(char).pinyin[0];
 
   const viewStyle = {
@@ -44,7 +27,7 @@ export const ChineseCharSmallCard = ({ char, style }) => {
       <View style={viewStyle}>
         <Text
           style={{
-            ...getDynamicTextStyle(char),
+            ...resultStyle,
             ...style,
             fontSize: 40,
             textAlign: "center"
@@ -63,7 +46,7 @@ ChineseCharSmallCard.defaultProps = {
 };
 
 export const ChineseReminderSmallCard = ({ char, style }) => {
-  const { selection, setSelection } = useLangSelection();
+  const { selection, setSelection } = useSelection();
 
   return (
     <TouchableHighlight
@@ -73,7 +56,7 @@ export const ChineseReminderSmallCard = ({ char, style }) => {
         <Text
           style={{
             ...style,
-            ...getDynamicTextStyle(char),
+            ...useResultStyle(char),
             fontSize: 40,
             textAlign: "center"
           }}
@@ -83,7 +66,7 @@ export const ChineseReminderSmallCard = ({ char, style }) => {
         <Text
           style={{
             ...style,
-            ...getDynamicTextStyle(char),
+            ...useResultStyle(char),
             textAlign: "center"
           }}
         >
@@ -101,15 +84,15 @@ ChineseCharSmallCard.defaultProps = {
 export const ChineseCharBigCard = ({ char, style }) => {
   const pinyin = cedictFind(char).pinyin[0];
   const {
-    trainingResults: { [char]: trainingResult }
-  } = useLangContent();
+    results: { [char]: trainingResult }
+  } = useResults();
 
   return (
     <View>
       <Text
         style={{
           ...style,
-          ...getDynamicTextStyle(char),
+          ...useResultStyle(char),
           fontSize: 120,
           textAlign: "center"
         }}

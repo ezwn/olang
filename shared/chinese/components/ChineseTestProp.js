@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 
 import { ChineseReminderSmallCard, ChineseCharSmallCard } from "./ChineseChar";
-import { useLangContent } from "../contexts/LangContent-ctx";
+import { useResults } from "shared/results/Results-ctx";
 
 export const ChineseTestProp = ({ chinese }) => {
   return (
@@ -18,7 +18,7 @@ export const ChineseTestProp = ({ chinese }) => {
 };
 
 export const ChineseTestSmallCard = ({ char, style }) => {
-  const { getScoreRank } = useLangContent();
+  const { getScoreRank } = useResults();
   const scoreRank = getScoreRank(char);
 
   return scoreRank === -1 || scoreRank > 15 ? (
