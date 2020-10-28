@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Text, View, TouchableHighlight, Linking } from "react-native";
-import { cedictFind } from "../../../lib/ezwn-cedict/cedict";
+import { cedictFind } from "../../ezwn-cedict/cedict";
 import { useSelection } from "shared/selection/Selection-ctx";
 import { useResultStyle } from "shared/results/result-hooks";
 import { useResults } from "shared/results/Results-ctx";

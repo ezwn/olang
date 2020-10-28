@@ -14,49 +14,80 @@ import { useChinese } from "shared/chinese/Chinese-ctx";
 import { Button } from "ezwn-ux-native/app-components/Button-cmp";
 import { Field } from "ezwn-ux-native/forms/Field-cmp";
 import { Padded } from "ezwn-ux-native/layouts/Padded-cmp";
+import { createPortal } from "react-dom";
 
-const PropPicker = ({ value, onValueChange }) => {
+const PropPicker = ({ value: index, onValueChange }) => {
   const { propositions } = useChinese();
 
-  if (!value && propositions.length > 0) {
-    onValueChange(propositions[0].text);
-  }
-
-  const rawIndex = propositions.findIndex((prop) => prop.text === value);
-  const index = rawIndex === -1 ? 0 : rawIndex;
   const prop = propositions[index];
 
-  const nextProp =
-    index < propositions.length - 1 ? propositions[index + 1].text : null;
-
-  const previousProp = index > 0 ? propositions[index - 1].text : null;
+  const nextPropOffset = index < propositions.length - 1 ? index + 1 : null;
+  const previousPropOffset = index > 0 ? index - 1 : null;
 
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       <Button
-        enabled={!!previousProp}
-        onPress={() => onValueChange(previousProp)}
+        enabled={previousPropOffset !== null}
+        onPress={() => onValueChange(previousPropOffset)}
       >
         <Text>Previous</Text>
       </Button>
       <Text style={{ flex: 1, marginLeft: 25 }}>{prop.reminder}</Text>
-      <Button enabled={!!nextProp} onPress={() => onValueChange(nextProp)}>
+      <Button
+        enabled={nextPropOffset !== null}
+        onPress={() => onValueChange(nextPropOffset)}
+      >
         <Text>Next</Text>
       </Button>
     </View>
   );
 };
 
-export const TestRoot = () => {
+const FirstStep = ({ prop, onNextStep }) => (
+  <Padded>
+    <Padded>
+      <Text>Translate this in chinese and try to write each ideogram:</Text>
+    </Padded>
+    <Padded>
+      <Text>{prop.reminder}</Text>
+    </Padded>
+    <TouchableHighlight onPress={onNextStep}>
+      <View>
+        <Padded>
+          <Text>Click to see the translation</Text>
+        </Padded>
+      </View>
+    </TouchableHighlight>
+  </Padded>
+);
+
+const SecondStep = ({ prop, onNextStep }) => {
   const { selection } = useSelection();
-  const [prop, setProp] = useState("");
-  const [opened, setOpened] = useState(false);
+
+  return (
+    <>
+      <TestComponent prop={prop.text} />
+      {selection && <ChineseCharBigCard char={selection} />}
+    </>
+  );
+};
+
+const stepComponents = [FirstStep, SecondStep];
+
+export const TestRoot = () => {
+  const { propositions } = useChinese();
+  const [propOffset, setPropOffset] = useState(0);
+  const [step, setStep] = useState(0);
   const { removeProp } = useChinese();
 
-  const updateProp = value => {
-    setOpened(false);
-    setProp(value);
-  }
+  const prop = propositions[propOffset];
+
+  const updateProp = (offset) => {
+    setStep(0);
+    setPropOffset(offset);
+  };
+
+  const StepComponent = stepComponents[step];
 
   return (
     <VerticalBorderLayout
@@ -74,7 +105,7 @@ export const TestRoot = () => {
         <ContextualMenu>
           <ContextualMenu.Choice
             onPress={() => {
-              removeProp(prop);
+              removeProp(prop.text);
               setTimeout(() => updateProp(""), 750);
             }}
           >
@@ -85,18 +116,11 @@ export const TestRoot = () => {
       }
     >
       <Field>
-        <PropPicker value={prop} onValueChange={updateProp} />
+        <PropPicker value={propOffset} onValueChange={updateProp} />
       </Field>
-      {opened
-        ? <TestComponent prop={prop} />
-        : <TouchableHighlight onPress={() => setOpened(true)}>
-          <View>
-            <Padded>
-              <Text>Click to see the translation</Text>
-            </Padded>
-          </View>
-        </TouchableHighlight>}
-      {selection && <ChineseCharBigCard char={selection} />}
+      {StepComponent && (
+        <StepComponent prop={prop} onNextStep={() => setStep(step + 1)} />
+      )}
     </VerticalBorderLayout>
   );
 };

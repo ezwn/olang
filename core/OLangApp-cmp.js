@@ -1,6 +1,7 @@
 import React from "react";
 import { NativeRouter, Redirect } from "react-router-native";
 
+import { UxContextProvider, createUxStyle } from "ezwn-ux-native/UxContext";
 import { VerticalBorderLayout } from "ezwn-ux-native/layouts/VerticalBorderLayout-cmp";
 
 import { AppViewport } from "ezwn-ux-native/layouts/AppViewport-cmp";
@@ -20,12 +21,14 @@ const OLangApp = () => (
 );
 
 export const ContextualizedApp = () => (
-  <AppProvider features={features}>
-    <NativeRouter>
-      <Redirect from="/" to="/test" />
-      <GlobalProvider>
-        <OLangApp />
-      </GlobalProvider>
-    </NativeRouter>
-  </AppProvider>
+  <UxContextProvider value={createUxStyle({ fullBgColor: "#870000" })}>
+    <AppProvider features={features}>
+      <NativeRouter>
+        <Redirect from="/" to="/test" />
+        <GlobalProvider>
+          <OLangApp />
+        </GlobalProvider>
+      </NativeRouter>
+    </AppProvider>
+  </UxContextProvider>
 );

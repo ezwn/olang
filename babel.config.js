@@ -9,8 +9,6 @@ module.exports = function (api) {
           alias: {
             "ezwn-ux-native": "./lib/ezwn-ux-native",
             "ezwn-storage-native": "./lib/ezwn-storage-native",
-            "react-router-native":
-              "./lib/ezwn-ux-native/dependencies/react-router-native",
             "ezwn-react-app": "./lib/ezwn-react-app",
             "ezwn-react-app-ux-native": "./lib/ezwn-react-app-ux-native",
             features: "./features",

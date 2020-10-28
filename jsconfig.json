@@ -2,15 +2,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "ezwn-ux-native": ["./lib/ezwn-ux-native"],
-      "ezwn-react-app": ["./lib/ezwn-react-app"],
-      "ezwn-react-app-ux-native": ["lib/ezwn-react-app-ux-native"],
-      "ezwn-storage-native": ["lib/ezwn-storage-native"],
-      "react-router-native": [
-        "./lib/ezwn-ux-native/dependencies/react-router-native"
-      ],
-      "features": ["./features"],
-      "shared": ["./shared"]
+      "ezwn-ux-native/*": ["lib/ezwn-ux-native/*"],
+      "ezwn-react-app/*": ["lib/ezwn-react-app/*"],
+      "ezwn-react-app-ux-native/*": ["lib/ezwn-react-app-ux-native/*"],
+      "ezwn-storage-native/*": ["lib/ezwn-storage-native/*"],
+      "features/*": ["features/*"],
+      "shared/*": ["shared/*"]
     }
   }
 }
