@@ -8,6 +8,7 @@ import { Button } from "ezwn-ux-native/app-components/Button-cmp";
 
 import { ChineseProp } from "../../../shared/chinese/components/ChineseProp";
 import { useSelection } from "shared/selection/Selection-ctx";
+import { cedictFind } from "shared/ezwn-cedict/cedict";
 
 export const WriteChineseComponent = () => {
   const { studyProp } = useChinese();
@@ -19,10 +20,19 @@ export const WriteChineseComponent = () => {
     setSelection(null);
   }, [chinese]);
 
+  const safeSetChinese = (value) => {
+    const correctedValue = value
+      .split("")
+      .filter((char) => cedictFind(char))
+      .join("");
+    setChinese(correctedValue);
+  };
+
   return (
     <>
       <Field>
-        <TextInput value={chinese} onChangeText={setChinese} />
+        <Text>Enter something in chinese:</Text>
+        <TextInput value={chinese} onChangeText={safeSetChinese} />
       </Field>
       <Field>
         <ChineseProp chinese={chinese} />
