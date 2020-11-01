@@ -4,11 +4,12 @@ import { Text, View } from "react-native";
 import { useChinese } from "shared/chinese/Chinese-ctx";
 import { TextInput } from "ezwn-ux-native/forms/TextInput-cmp";
 import { Field } from "ezwn-ux-native/forms/Field-cmp";
-import { Button } from "ezwn-ux-native/app-components/Button-cmp";
 
 import { ChineseProp } from "../../../shared/chinese/components/ChineseProp";
 import { useSelection } from "shared/selection/Selection-ctx";
 import { cedictFind } from "shared/ezwn-cedict/cedict";
+import { TextButton } from "ezwn-ux-native/app-components/TextButton-cmp";
+import { Padded } from "ezwn-ux-native/layouts/Padded-cmp";
 
 export const WriteChineseComponent = () => {
   const { studyProp } = useChinese();
@@ -40,10 +41,15 @@ export const WriteChineseComponent = () => {
       <Field>
         <Text>Reminder:</Text>
         <TextInput value={reminder} onChangeText={setReminder} />
-        <Button onPress={() => studyProp(chinese, reminder)}>
-          <Text>Study</Text>
-        </Button>
       </Field>
+      <Padded>
+        <TextButton
+          enabled={chinese && reminder}
+          onPress={() => studyProp(chinese, reminder)}
+        >
+          Study
+        </TextButton>
+      </Padded>
     </>
   );
 };
