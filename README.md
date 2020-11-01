@@ -1,6 +1,12 @@
 # olang-chinese
 
+A personal tool to learn chinese ideograms.
+
 ## Screenshots
+
+|                        Daily test                         |
+| :-------------------------------------------------------: |
+| ![Daily test](./docs/screenshots/olang-chinese-daily.png) |
 
 ## Dev environment
 
@@ -11,15 +17,19 @@
 
 To compile you need to clone ezwn-ux-native, ezwn-storage-native, ezwn-react-app and ezwn-react-app-ux-native (available from my github) into the lib folder :
 
+```
 cd lib
 git clone https://github.com/ezwn/ezwn-ux-native.git
 git clone https://github.com/ezwn/ezwn-storage-native.git
 git clone https://github.com/ezwn/ezwn-react-app.git
 git clone https://github.com/ezwn/ezwn-react-app-ux-native.git
+```
 
 ## Development
 
+```
 npm start
+```
 
 ## Project organization
 
