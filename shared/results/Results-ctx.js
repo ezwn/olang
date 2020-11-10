@@ -7,7 +7,7 @@ const STORAGE_KEY = "OLANG-results";
 export const ResultsContext = React.createContext();
 
 export const ResultsProvider = ({ children }) => {
-  const [results, setResults] = useStorage(STORAGE_KEY, 10000, () => (mock));
+  const [results, setResults] = useStorage(STORAGE_KEY, () => mock);
 
   const findResult = (key) => results[key];
 
@@ -49,11 +49,13 @@ export const ResultsProvider = ({ children }) => {
       ...results[key],
       char: key
     }))
-    .sort((tr1, tr2) => tr1.score-tr2.score);
+    .sort((tr1, tr2) => tr1.score - tr2.score);
 
   const getScoreRank = (char) => {
-    return resultList.findIndex(trainingResult => trainingResult.char===char);
-  }
+    return resultList.findIndex(
+      (trainingResult) => trainingResult.char === char
+    );
+  };
 
   return (
     <ResultsContext.Provider

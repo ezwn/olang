@@ -5,7 +5,7 @@ import { NavigationMenu } from "ezwn-ux-native/app-components/NavigationMenu-cmp
 import { PenFancyTextIcon } from "ezwn-ux-native/text-icons/PenFancyTextIcon-cmp";
 
 import { WriteRoot } from "./roots/WriteRoot-cmp";
-import { DumbbellTextIcon } from "ezwn-ux-native/text-icons/DumbBellTextIcon-cmp";
+import { DumbbellTextIcon } from "ezwn-ux-native/text-icons/DumbbellTextIcon-cmp";
 import { TrainingRoot } from "./roots/TrainingRoot-cmp";
 import { TestRoot } from "./roots/TestRoot-cmp";
 

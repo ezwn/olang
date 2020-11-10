@@ -10,7 +10,6 @@ const ChineseContext = React.createContext();
 export const ChineseProvider = ({ children }) => {
   const [propositions, setPropositions, loaded] = useStorage(
     STORAGE_KEY,
-    10000,
     () => mock
   );
   const { results, setResults, findResult } = useResults();
@@ -51,8 +50,8 @@ export const ChineseProvider = ({ children }) => {
   };
 
   const removeProp = (propChinese) => {
-    console.log(`removeProp ${propChinese}`)
-    setPropositions(propositions.filter(p => p.text !== propChinese));
+    console.log(`removeProp ${propChinese}`);
+    setPropositions(propositions.filter((p) => p.text !== propChinese));
   };
 
   return loaded ? (
