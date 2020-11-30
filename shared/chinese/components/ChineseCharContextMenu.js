@@ -2,11 +2,9 @@ import React from "react";
 import { Linking } from "react-native";
 
 import { useSelection } from "shared/selection/Selection-ctx";
-import { PenFancyTextIcon } from "ezwn-ux-native/text-icons/PenFancyTextIcon-cmp";
-import { SuccessTextIcon } from "ezwn-ux-native/text-icons/SuccessTextIcon-cmp";
-import { FailureTextIcon } from "ezwn-ux-native/text-icons/FailureTextIcon-cmp";
 import { ContextualMenu } from "ezwn-ux-native/app-components/ContextualMenu-cmp";
 import { useResults } from "shared/results/Results-ctx";
+import { FontAwesomeTextIcon } from "ezwn-ux-native/text-icons/FontAwsomeTextIcon-cmp";
 
 const openYoutube = (char) => {
   const url = `https://www.youtube.com/results?search_query=write+${encodeURIComponent(
@@ -34,15 +32,21 @@ export const ChineseCharContextMenu = () => {
           {trainingResult.date !== date && (
             <>
               <ContextualMenu.Choice onPress={() => recordSuccess(selection)}>
-                <SuccessTextIcon />
+                <FontAwesomeTextIcon
+                  fontAwesomeIcon="faThumbsUp"
+                  text="Success"
+                />
               </ContextualMenu.Choice>
               <ContextualMenu.Choice onPress={() => recordFailure(selection)}>
-                <FailureTextIcon />
+                <FontAwesomeTextIcon
+                  fontAwesomeIcon="faThumbsDown"
+                  text="Failure"
+                />
               </ContextualMenu.Choice>
             </>
           )}
           <ContextualMenu.Choice onPress={() => openYoutube(selection)}>
-            <PenFancyTextIcon />
+            <FontAwesomeTextIcon fontAwesomeIcon="faPenFancy" text="WRITE" />
           </ContextualMenu.Choice>
         </>
       )}
