@@ -7,6 +7,8 @@ import { TextInput } from "ezwn-ux-native/forms/TextInput-cmp";
 
 import { useChinese } from "shared/chinese/Chinese-ctx";
 import { useResults } from "shared/results/Results-ctx";
+import { Padded } from "ezwn-ux-native/layouts/Padded-cmp";
+import { HorizontalLayout } from "ezwn-ux-native/layouts/HorizontalLayout-cmp";
 
 export const MaintenanceRootView = () => {
   const { results, setResults } = useResults();
@@ -28,10 +30,14 @@ export const MaintenanceRootView = () => {
     <VerticalBorderLayout
       top={<TitleBar text="Configuration" left={<TitleBar.BackButton />} />}
     >
-      <Text>Données personnelles</Text>
-      <TextInput multiline height={200} value={text} onChangeText={setText} />
-      <Button title="Exporter" onPress={exportData} />
-      <Button title="Importer" onPress={importData} />
+      <Padded>
+        <Text>Données personnelles</Text>
+        <TextInput multiline height={200} value={text} onChangeText={setText} />
+        <HorizontalLayout>
+          <Button title="Exporter" onPress={exportData} />
+          <Button title="Importer" onPress={importData} />
+        </HorizontalLayout>
+      </Padded>
     </VerticalBorderLayout>
   );
 };
